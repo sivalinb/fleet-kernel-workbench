@@ -1,0 +1,21 @@
+.gradio-container {max-width: 1360px !important; margin: auto;}
+footer {display: none !important;}
+.kernel-hero {background: #102a37; border-radius: 18px; padding: 34px 38px; margin: 6px 0 22px; color: #f5faf8; position: relative; overflow: hidden;}
+.kernel-hero:after {content: "◉"; position: absolute; right: 35px; top: -65px; font-size: 280px; color: #224852; opacity: .55; pointer-events: none;}
+.kernel-hero h1 {font-size: clamp(30px,4vw,46px); font-weight: 650; letter-spacing: -1.5px; color: #fff; line-height: 1.12; margin: 12px 0; position: relative; z-index: 1;}
+.kernel-hero p {color: #c4ddd9; max-width: 700px; font-size: 17px; position: relative; z-index: 1;}
+.kernel-eyebrow {color: #73d9bb; text-transform: uppercase; font-size: 11px; font-weight: 700; letter-spacing: 2px;}
+.kernel-strip {display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; position: relative; z-index: 1;}
+.kernel-strip span {border: 1px solid #42636b; border-radius: 20px; padding: 5px 12px; font-size: 12px; color: #d9e9e5;}
+.kernel-origin {font-size: 12px; color: #165c70; padding: 10px 14px; background: #e6f1f5; border: 1px solid #c4dce7; border-radius: 9px; margin: 4px 0 14px;}
+.kernel-stats {display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-bottom: 18px;}
+.kernel-stat {background: #fff; border: 1px solid #dfe7e4; border-radius: 12px; padding: 17px;}
+.kernel-stat strong {display: block; font-size: 31px; color: #143b3b; letter-spacing: -1px; margin: 6px 0 1px;}
+.kernel-stat span {font-size: 12px; color: #546b70;}
+.kernel-stat em {font-style: normal; font-size: 11px; color: #647d80;}
+.kernel-stat.attention strong {color: #a54a26;}
+.kernel-verdict {background: #f2f7f5; border-left: 3px solid #238a71; padding: 16px 20px; border-radius: 0 10px 10px 0; color: #25474a; margin: 6px 0 16px;}
+.kernel-verdict p {margin: 6px 0; font-size: 14px; color: #25474a !important;}
+.kernel-architecture svg {width: 100%; height: auto; display: block;}
+.kernel-note {font-size: 13px; color: #526e74; padding: 12px 0;}
+@media (max-width: 700px) {.kernel-stats {grid-template-columns: repeat(2,minmax(0,1fr));}.kernel-hero {padding: 25px;}.kernel-hero:after {display: none;}}

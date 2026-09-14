@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="590" viewBox="0 0 1160 590" role="img" aria-labelledby="title desc">
+<title id="title">Fleet Kernel Workbench architecture</title>
+<desc id="desc">Owned Linux workload to BCC probe to Python analysis. The catalog package supplies ownership. The telemetry package supplies contracts, Collector configuration, fault relay, metrics and persistence. The real Collector sends logs to a verifying sink. Synthetic replay enters at the same Python event boundary.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#498679" stroke-width="1.5"/></marker></defs>
+<rect width="1160" height="590" rx="20" fill="#f4f8f6"/>
+<g font-family="system-ui,sans-serif" fill="#153f42">
+<text x="32" y="40" font-size="12" letter-spacing="2" fill="#4a7a74">KERNEL OBSERVATIONS → SERVICE CONTEXT → DELIVERY EVIDENCE</text>
+<g fill="none" stroke="#498679" stroke-width="2" marker-end="url(#arrow)">
+<path d="M240 143H290"/><path d="M500 143H553"/><path d="M795 143H846"/>
+<path d="M395 269V238H620V207" stroke-dasharray="6 5"/><path d="M675 269V207"/>
+<path d="M960 205V376H795"/><path d="M550 430H490"/><path d="M275 430H240"/>
+<path d="M675 332V376"/>
+</g>
+<rect x="30" y="82" width="210" height="124" rx="12" fill="#102a37"/>
+<text x="48" y="110" fill="#75d9bc" font-size="11">01 / LINUX ONLY</text>
+<text x="48" y="137" fill="white" font-size="19">Owned TCP client</text>
+<text x="48" y="162" fill="#c4dedb" font-size="13">Blocking loopback connects</text>
+<text x="48" y="184" fill="#c4dedb" font-size="13">Success + reserved-port refusal</text>
+<rect x="290" y="82" width="210" height="124" rx="12" fill="#102a37"/>
+<text x="308" y="110" fill="#75d9bc" font-size="11">02 / SMALL BPF C PROBE</text>
+<text x="308" y="137" fill="white" font-size="19">BCC tracepoints</text>
+<text x="308" y="162" fill="#c4dedb" font-size="13">TGID filter · map · perf buffer</text>
+<text x="308" y="184" fill="#c4dedb" font-size="13">Return code + syscall duration</text>
+<rect x="553" y="82" width="242" height="124" rx="12" fill="#e0f1e9" stroke="#abd1be"/>
+<text x="572" y="110" font-size="11" fill="#286c57">03 / PYTHON COMPOSITION</text>
+<text x="572" y="137" font-size="19">Evidence analysis</text>
+<text x="572" y="162" font-size="13">Validate capture + resolve owner</text>
+<text x="572" y="184" font-size="13">Keep capture loss visible</text>
+<rect x="846" y="82" width="282" height="124" rx="12" fill="#e0f1e9" stroke="#abd1be"/>
+<text x="865" y="110" font-size="11" fill="#286c57">04 / GRADIO</text>
+<text x="865" y="137" font-size="19">Investigation workbench</text>
+<text x="865" y="162" font-size="13">Outcomes · provenance · exposure</text>
+<text x="865" y="184" font-size="13">Select a real delivery experiment</text>
+<rect x="290" y="268" width="210" height="64" rx="10" fill="#e5edf8" stroke="#bacce3"/>
+<text x="308" y="294" font-size="16">Synthetic replay</text>
+<text x="308" y="315" font-size="12">Invented events · macOS / Linux</text>
+<rect x="553" y="268" width="242" height="64" rx="10" fill="#fff" stroke="#abd1be"/>
+<text x="572" y="294" font-size="16">Catalog package</text>
+<text x="572" y="315" font-size="12">Reconciliation · ownership · impact</text>
+<rect x="553" y="376" width="242" height="113" rx="12" fill="#e0f1e9" stroke="#abd1be"/>
+<text x="572" y="403" font-size="11" fill="#286c57">05 / REAL NATIVE PROCESS</text>
+<text x="572" y="430" font-size="19">OpenTelemetry Collector</text>
+<text x="572" y="455" font-size="13">Memory or WAL queue · SIGKILL</text>
+<text x="572" y="476" font-size="12">Telemetry package supplies config</text>
+<rect x="275" y="376" width="215" height="113" rx="12" fill="#fff1e5" stroke="#e2c3a6"/>
+<text x="293" y="403" font-size="11" fill="#935a2e">06 / PACKAGE REUSE</text>
+<text x="293" y="430" font-size="19">Fault relay</text>
+<text x="293" y="455" font-size="13">Actual HTTP 503 responses</text>
+<text x="293" y="476" font-size="12">Then restore export access</text>
+<rect x="30" y="376" width="210" height="113" rx="12" fill="#102a37"/>
+<text x="48" y="403" fill="#75d9bc" font-size="11">07 / VERIFY CONTENT</text>
+<text x="48" y="430" fill="white" font-size="19">Python evidence sink</text>
+<text x="48" y="455" fill="#c4dedb" font-size="13">Unique IDs + exact event bodies</text>
+<text x="48" y="476" fill="#c4dedb" font-size="12">Recovery canary · duplicate count</text>
+<text x="846" y="430" font-size="14">Both repos are installed packages.</text>
+<text x="846" y="455" font-size="13">No sibling servers required.</text>
+<text x="846" y="477" font-size="13">Imports pinned to Git commit IDs.</text>
+<path d="M32 522H1128" stroke="#cbded5"/>
+<text x="32" y="550" font-size="14">A healthy queue cannot repair a missing kernel observation. A catalog dependency is exposure, not proof of an outage.</text>
+<text x="32" y="574" font-size="12" fill="#59766e">Linux capture is read-only and limited to a child created by this tool. All inventory is fictional learning metadata.</text>
+</g></svg>

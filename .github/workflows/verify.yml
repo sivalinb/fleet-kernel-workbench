@@ -1,0 +1,55 @@
+name: Verify workbench
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install '.[test]'
+      - run: python -m pip check
+      - run: ruff check src tests scripts gradio_app.py
+      - run: ruff format --check src tests scripts gradio_app.py
+      - run: pytest -m 'not native and not ebpf'
+      - run: python -m build --wheel
+      - run: fleet-kernel replay --profile capture-loss
+  collector:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install '.[test]'
+      - run: python scripts/install_collector.py
+      - run: pytest -m native
+  linux-ebpf:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Linux tracing prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y python3-venv python3-bpfcc linux-headers-$(uname -r)
+          if ! mountpoint -q /sys/kernel/tracing; then
+            sudo mount -t tracefs tracefs /sys/kernel/tracing
+          fi
+      - name: Install Python packages with system BCC bindings
+        run: |
+          /usr/bin/python3 -m venv --system-site-packages .bpf-venv
+          .bpf-venv/bin/python -m pip install '.[test]'
+          .bpf-venv/bin/python scripts/install_collector.py
+      - name: Verify live capture through persistent Collector recovery
+        run: sudo env KERNEL_LIVE_TEST=1 .bpf-venv/bin/python -m pytest -m ebpf
+
