@@ -1,5 +1,7 @@
 # Fleet Kernel Workbench
 
+[![Verify workbench](https://github.com/sivalinb/fleet-kernel-workbench/actions/workflows/verify.yml/badge.svg)](https://github.com/sivalinb/fleet-kernel-workbench/actions/workflows/verify.yml)
+
 **Connect kernel observations to service ownership, then test whether the evidence survives a telemetry failure.**
 
 A Python and Gradio learning project built on two independently installed Python packages: [Fleet Infrastructure Catalog](https://github.com/sivalinb/fleet-infrastructure-catalog) and [Telemetry Reliability Lab](https://github.com/sivalinb/fleet-telemetry-lab).
@@ -74,11 +76,10 @@ pytest -m native
 sudo env KERNEL_LIVE_TEST=1 .bpf-venv/bin/python -m pytest -m ebpf
 ```
 
-The final command also needs the test extra installed in the BCC environment. Live tests require actual probe attachment and validate real captured observations through persistent Collector recovery. They do not silently fall back to replay. [Test cases and evidence boundaries](docs/testing.md) explain what each suite proves.
+The final command also needs the test extra installed in the BCC environment. Live tests require actual probe attachment and validate real captured observations through persistent Collector recovery. They do not silently fall back to replay. [Test cases and evidence boundaries](docs/testing.md) explain what each suite proves; [verification results](docs/verification.md) record the completed checks.
 
 ## Practical scope
 
 This is a bounded learning system, not a fleet monitoring agent. The catalog contains invented metadata in both modes. A syscall duration is not application latency or network RTT. Pending nonblocking connects are not classified as failures. Dependency exposure is not proof that dependent services failed. A durable queue protects accepted telemetry within its limits; it cannot recreate missing kernel events.
 
 Local runtime data, imported captures, raw event identities and process logs are ignored by Git. Downloads from the UI contain aggregate findings only. See the [eBPF concepts](docs/ebpf.md) and [extension and scaling design](docs/scaling.md).
-

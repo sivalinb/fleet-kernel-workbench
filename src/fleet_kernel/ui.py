@@ -120,7 +120,7 @@ def build_app(workbench=None):
             <h1>From kernel signal<br>to service context.</h1>
             <p>Understand connection failures, find the recorded owner, and measure which observations survive a telemetry outage.</p>
             <div class="kernel-strip"><span>Python + Gradio</span><span>Catalog package</span><span>Telemetry reliability package</span><span>Linux eBPF / synthetic replay</span></div></div>""")
-        with gr.Row():
+        with gr.Row(elem_classes="kernel-layout"):
             with gr.Column(scale=1, min_width=255):
                 gr.Markdown("### Investigation inputs")
                 profile = gr.Dropdown(

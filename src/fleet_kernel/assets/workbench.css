@@ -1,4 +1,4 @@
-.gradio-container {max-width: 1360px !important; margin: auto;}
+.gradio-container {width: 100% !important; min-width: 0 !important; max-width: 1360px !important; margin: auto; box-sizing: border-box;}
 footer {display: none !important;}
 .kernel-hero {background: #102a37; border-radius: 18px; padding: 34px 38px; margin: 6px 0 22px; color: #f5faf8; position: relative; overflow: hidden;}
 .kernel-hero:after {content: "◉"; position: absolute; right: 35px; top: -65px; font-size: 280px; color: #224852; opacity: .55; pointer-events: none;}
@@ -19,3 +19,4 @@ footer {display: none !important;}
 .kernel-architecture svg {width: 100%; height: auto; display: block;}
 .kernel-note {font-size: 13px; color: #526e74; padding: 12px 0;}
 @media (max-width: 700px) {.kernel-stats {grid-template-columns: repeat(2,minmax(0,1fr));}.kernel-hero {padding: 25px;}.kernel-hero:after {display: none;}}
+@media (max-width: 800px) {.kernel-layout {flex-direction: column !important;}.kernel-layout > .column {min-width: 0 !important; width: 100% !important;}}
